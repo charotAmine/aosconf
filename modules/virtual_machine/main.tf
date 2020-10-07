@@ -1,13 +1,3 @@
-data "azurerm_key_vault" "key_vault" {
-  name                = var.vault_name
-  resource_group_name = var.kv_resource_group_name
-}
-
-data "azurerm_key_vault_secret" "vmpassword" {
-  name = "vmPassword"
-  key_vault_id = data.azurerm_key_vault.key_vault.id 
-}
-
 resource "azurerm_network_security_group" "virtual_machine_nsg" {
     name                = "myNetworkSecurityGroup"
    location            = var.resource_location
@@ -76,7 +66,7 @@ resource "azurerm_virtual_machine" "virtual_machine" {
   os_profile {
     computer_name  = "hostname"
     admin_username = var.username
-    admin_password = data.azurerm_key_vault_secret.vmpassword.value
+    admin_password = var.password
   }
   
   os_profile_windows_config {

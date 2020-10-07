@@ -5,6 +5,7 @@ terraform {
     key                  = "prod.terraform.tfstate"
   }
 }
+
 provider "azurerm" {
   version = "=2.0.0"
   features {}
@@ -15,7 +16,7 @@ provider "azurerm" {
 }
 
 resource "azurerm_resource_group" "meetup_online" {
-  name     = "myonlinemeetup001"
+  name     = "aosconf_backup"
   location = "EAST US"
 }
 
